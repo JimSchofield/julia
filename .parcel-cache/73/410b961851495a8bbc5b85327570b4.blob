@@ -1,0 +1,48 @@
+var _complex = require("./lib/complex");
+var _coords = require("./lib/coords");
+const CANVAS_WIDTH = 600;
+const CANVAS_HEIGHT = 400;
+const MAX_ITER = 1000;
+const C = {
+    x: -0.04,
+    y: -0.12
+};
+const MAX_VAL = (1 + Math.sqrt(1 + 4 * _complex.cMod(C))) / 2;
+const canvasEl = document.querySelector('#canvas');
+const ctx = canvasEl.getContext('2d');
+const newImageData = ctx.createImageData(CANVAS_WIDTH, CANVAS_HEIGHT);
+function iterate(c) {
+    return _complex.cAdd(_complex.cMult(c, c), C);
+}
+function doesDiverge(c) {
+    let iterateVal = c;
+    let index = 0;
+    while(index <= MAX_ITER){
+        iterateVal = iterate(iterateVal);
+        if (_complex.cMod(iterateVal) > MAX_VAL) return true;
+        index++;
+    }
+    return false;
+}
+function draw() {
+    for(let i = 0; i <= newImageData.width * newImageData.height; i++){
+        let j = i * 4;
+        const { row , col  } = _coords.getCoords(j, CANVAS_WIDTH);
+        const cNum = _coords.getComplexNumber(row, col);
+        // iterate, and if greater -> diverges
+        if (!doesDiverge(cNum)) {
+            newImageData.data[j] = 0;
+            newImageData.data[j + 1] = 0;
+            newImageData.data[j + 2] = 0;
+            newImageData.data[j + 3] = 255;
+        } else {
+            newImageData.data[j] = 255;
+            newImageData.data[j + 1] = 255;
+            newImageData.data[j + 2] = 255;
+            newImageData.data[j + 3] = 255;
+        }
+    }
+    ctx.clearRect(0, 0, newImageData.width, newImageData.height);
+    ctx.putImageData(newImageData, 0, 0);
+}
+draw();

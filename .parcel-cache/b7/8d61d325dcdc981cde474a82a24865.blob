@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Julia</title>
+  <link rel="stylesheet" href="/index.HASH_REF_89cdfd37128071adebed67f58e865176.css">
+</head>
+<body>
+  <div>
+    <label for="cValue">C real value:</label>
+    <input type="number" id="cValue" value="0">
+  </div>
+  <div>
+    <label for="cValue">C real value:</label>
+    <input type="number" id="cValue" value="0">
+  </div>
+  <canvas width="600" height="400" id="canvas"></canvas>
+  <script src="/index.HASH_REF_3fe87ed9b3aa24b752b5020bb3d772a7.js"></script>
+</body>
+</html>

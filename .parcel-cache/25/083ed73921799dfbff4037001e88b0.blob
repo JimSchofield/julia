@@ -1,0 +1,21 @@
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getCoords", ()=>getCoords
+);
+parcelHelpers.export(exports, "getComplexNumber", ()=>getComplexNumber
+);
+function getCoords(index, width) {
+    let pixelIndex = index / 4;
+    const col = pixelIndex % width;
+    const row = Math.floor(pixelIndex / width);
+    return {
+        row,
+        col
+    };
+}
+function getComplexNumber(row, col) {
+    return {
+        x: col * 6 / 599 - 3,
+        y: row * -4 / 399 + 2
+    };
+}

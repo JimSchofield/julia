@@ -1,0 +1,14 @@
+const CANVAS_WIDTH = 600;
+const CANVAS_HEIGHT = 400;
+const canvasEl = document.querySelector('#canvas');
+const ctx = canvasEl.getContext('2d');
+const newImageData = ctx.createImageData(CANVAS_WIDTH, CANVAS_HEIGHT);
+for(let i = 0; i <= newImageData.width * 10; i++){
+    let j = i * 4;
+    newImageData.data[j] = 125;
+    newImageData.data[j + 1] = 0;
+    newImageData.data[j + 2] = 125;
+    newImageData.data[j + 3] = 1;
+}
+console.log(newImageData);
+ctx.putImageData(newImageData, 0, 0);

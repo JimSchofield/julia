@@ -1,0 +1,31 @@
+const CANVAS_WIDTH = 600;
+const CANVAS_HEIGHT = 400;
+const canvasEl = document.querySelector('#canvas');
+const ctx = canvasEl.getContext('2d');
+const newImageData = ctx.createImageData(CANVAS_WIDTH, CANVAS_HEIGHT);
+function getCoords(index, width) {
+    let pixelIndex = index / 4;
+    const col = pixelIndex % width;
+    const row = Math.floor(pixelIndex / width);
+    return {
+        row,
+        col
+    };
+}
+function getComplexNumber(col, row) {
+    return {
+        x: col * 4 / 599 - 2,
+        y: row * -4 / 399 + 2
+    };
+}
+const coords = getCoords(CANVAS_WIDTH * 4, CANVAS_WIDTH);
+console.log(getComplexNumber(coord.col, coord.row));
+for(let i = 0; i <= newImageData.width * newImageData.height; i++){
+    let j = i * 4;
+    newImageData.data[j] = 255;
+    newImageData.data[j + 1] = 0;
+    newImageData.data[j + 2] = 0;
+    newImageData.data[j + 3] = 255;
+}
+console.log(newImageData);
+ctx.putImageData(newImageData, 0, 0);

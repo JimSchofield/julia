@@ -1,0 +1,6 @@
+const CANVAS_WIDTH = 600;
+const CANVAS_HEIGHT = 400;
+const canvasEl = document.querySelector('#canvas');
+const ctx = canvasEl.getContext('2d');
+const newImageData = ctx.createImageData(CANVAS_WIDTH, CANVAS_HEIGHT);
+console.log(newImageData);

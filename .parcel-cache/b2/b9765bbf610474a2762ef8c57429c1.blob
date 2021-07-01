@@ -1,0 +1,34 @@
+var _coords = require("./lib/coords");
+var _iterate = require("./lib/iterate");
+const CANVAS_WIDTH = 600;
+const CANVAS_HEIGHT = 400;
+const MAX_ITER = 1000;
+const C = {
+    x: -0.04,
+    y: -0.12
+};
+const canvasEl = document.querySelector('#canvas');
+const ctx = canvasEl.getContext('2d');
+const newImageData = ctx.createImageData(CANVAS_WIDTH, CANVAS_HEIGHT);
+function draw() {
+    for(let i = 0; i <= newImageData.width * newImageData.height; i++){
+        let j = i * 4;
+        const { row , col  } = _coords.getCoords(j, CANVAS_WIDTH);
+        const cNum = _coords.getComplexNumber(row, col);
+        // iterate, and if greater -> diverges
+        if (!_iterate.doesDiverge(cNum, C, MAX_ITER)) {
+            newImageData.data[j] = 0;
+            newImageData.data[j + 1] = 0;
+            newImageData.data[j + 2] = 0;
+            newImageData.data[j + 3] = 255;
+        } else {
+            newImageData.data[j] = 255;
+            newImageData.data[j + 1] = 255;
+            newImageData.data[j + 2] = 255;
+            newImageData.data[j + 3] = 255;
+        }
+    }
+    ctx.clearRect(0, 0, newImageData.width, newImageData.height);
+    ctx.putImageData(newImageData, 0, 0);
+}
+draw();

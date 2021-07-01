@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Julia</title>
+  <link rel="stylesheet" href="313806689b1ef0c17863b5d8c7cd90cf">
+</head>
+<body>
+  <div>
+    <label for="cValue">C Value:</label>
+    <input type="number" id="cValue" value="0">
+  </div>
+  <canvas width="600" height="400" id="canvas"></canvas>
+  <script src="9ea381175ed39b145a2cc069f133ac46"></script>
+</body>
+</html>

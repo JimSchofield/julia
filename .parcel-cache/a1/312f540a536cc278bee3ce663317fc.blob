@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Julia</title>
+</head>
+<body>
+  <div>
+    <label for="cValue">C Value:</label>
+    <input type="number" id="cValue">
+  </div>
+  <script src="/index.HASH_REF_3fe87ed9b3aa24b752b5020bb3d772a7.js"></script>
+</body>
+</html>

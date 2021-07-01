@@ -1,0 +1,23 @@
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "iterate", ()=>iterate
+);
+parcelHelpers.export(exports, "doesDiverge", ()=>doesDiverge
+);
+var _complex = require("./complex");
+function iterate(c, C) {
+    // c => iterate value
+    // C => complex c from f(x) = z^2 + C
+    return _complex.cAdd(_complex.cMult(c, c), C);
+}
+function doesDiverge(c, C, MAX_ITER) {
+    const MAX_VAL = (1 + Math.sqrt(1 + 4 * _complex.cMod(C))) / 2;
+    let iterateVal = c;
+    let index = 0;
+    while(index <= MAX_ITER){
+        iterateVal = iterate(iterateVal, C);
+        if (_complex.cMod(iterateVal) > MAX_VAL) return true;
+        index++;
+    }
+    return false;
+}
