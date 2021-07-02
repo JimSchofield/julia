@@ -1,4 +1,4 @@
-import {cAdd, cMod, cMult, CNumber} from "./complex";
+import { cAdd, cMod, cMult, CNumber } from "./complex";
 
 export function iterate(c: CNumber, C: CNumber) {
   // c => iterate value
@@ -18,7 +18,7 @@ export function doesDiverge(c: CNumber, C: CNumber, MAX_ITER: number) {
       return true;
     }
 
-    index ++;
+    index++;
   }
 
   return false;
