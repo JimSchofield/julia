@@ -1,31 +1,31 @@
-import { CNumber } from './lib/complex';
-import { getComplexNumber, getCoords } from './lib/coords';
-import { doesDiverge } from './lib/iterate';
-import { debounce } from './lib/util';
+import { CNumber } from "./lib/complex";
+import { getComplexNumber, getCoords } from "./lib/coords";
+import { doesDiverge } from "./lib/iterate";
+import { debounce } from "./lib/util";
 
 let CANVAS_WIDTH = 600;
 let CANVAS_HEIGHT = 400;
 let MAX_ITER = 1000;
 let C = { x: -0.04, y: -0.12 };
 
-const heightInput = document.querySelector<HTMLInputElement>('#height');
-const widthInput = document.querySelector<HTMLInputElement>('#width');
+const heightInput = document.querySelector<HTMLInputElement>("#height");
+const widthInput = document.querySelector<HTMLInputElement>("#width");
 const cImageValueInput =
-  document.querySelector<HTMLInputElement>('#cImagValue');
-const cRealValueInput = document.querySelector<HTMLInputElement>('#cRealValue');
-const maxIterInput = document.querySelector<HTMLInputElement>('#maxIter');
+  document.querySelector<HTMLInputElement>("#cImagValue");
+const cRealValueInput = document.querySelector<HTMLInputElement>("#cRealValue");
+const maxIterInput = document.querySelector<HTMLInputElement>("#maxIter");
 const inputs = [
   cImageValueInput,
   cRealValueInput,
   maxIterInput,
   heightInput,
-  widthInput
+  widthInput,
 ];
 
-const canvasEl = document.querySelector<HTMLCanvasElement>('#canvas');
-const ctx = canvasEl.getContext('2d');
+const canvasEl = document.querySelector<HTMLCanvasElement>("#canvas");
+const ctx = canvasEl.getContext("2d");
 
-const newImageData = ctx.createImageData(CANVAS_WIDTH, CANVAS_HEIGHT);
+let newImageData = ctx.createImageData(CANVAS_WIDTH, CANVAS_HEIGHT);
 
 function draw(C: CNumber, MAX_ITER: number) {
   for (let i = 0; i <= newImageData.width * newImageData.height; i++) {
@@ -53,19 +53,21 @@ function draw(C: CNumber, MAX_ITER: number) {
 
 draw(C, MAX_ITER);
 
-inputs.forEach(inputEl => {
+inputs.forEach((inputEl) => {
   inputEl.addEventListener(
-    'click',
+    "click",
     debounce(() => {
       CANVAS_WIDTH = widthInput.valueAsNumber;
       CANVAS_HEIGHT = heightInput.valueAsNumber;
 
-      canvasEl.setAttribute('height', String(CANVAS_HEIGHT));
-      canvasEl.setAttribute('width', String(CANVAS_WIDTH));
+      canvasEl.setAttribute("height", String(CANVAS_HEIGHT));
+      canvasEl.setAttribute("width", String(CANVAS_WIDTH));
+
+      newImageData = ctx.createImageData(CANVAS_WIDTH, CANVAS_HEIGHT);
 
       C = {
         x: cRealValueInput.valueAsNumber,
-        y: cImageValueInput.valueAsNumber
+        y: cImageValueInput.valueAsNumber,
       };
 
       MAX_ITER = maxIterInput.valueAsNumber;
